@@ -16,12 +16,16 @@ import javax.swing.border.LineBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
+import java.awt.event.KeyListener;
+import core.model.events.Message;
+import core.model.Peer;
+import java.util.Date;
 /**
  *
  * @author akraskov
  */
 public class MainForm {
+    private JTextArea message;
     public JPanel createPanel()
     {
         JPanel panel = new JPanel(new BorderLayout());
@@ -30,7 +34,7 @@ public class MainForm {
         JTextArea chat = new JTextArea();
         chat.setBorder(LineBorder.createGrayLineBorder());
         
-        JTextArea message = new JTextArea();
+        message = new JTextArea();
         message.setPreferredSize(new Dimension(300, 50));
         message.setBorder(LineBorder.createGrayLineBorder());
         
@@ -54,6 +58,33 @@ public class MainForm {
         panel.add(usersPanel, BorderLayout.EAST);
         panel.add(list, BorderLayout.WEST);
         
+        addListener();
+        
         return panel;
+    }
+    
+    private void addListener() {
+        
+        String text = this.message.getText();
+        this.message.addKeyListener(
+            new KeyListener(){
+
+                public void keyPressed(KeyEvent e){
+
+                    if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                        Peer peer = new Peer();
+                        Date date = new Date();
+                        Message msg = new Message(peer, text, date);
+                    }       
+                }
+                
+                public void keyReleased(KeyEvent e) {               
+                }
+                
+                public void keyTyped(KeyEvent e) {               
+                }
+            }
+        );
+
     }
 }

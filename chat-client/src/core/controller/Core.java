@@ -16,25 +16,25 @@ import core.model.MessageQueue;
 public class Core extends Thread implements core.factory.Core{   
     
     private Peer peer = null;
-    private MessageQueue queue = null;
+    private MessageQueue frontendQueue = core.controller.Com.frontendQueue;
+    private MessageQueue backendQueue = core.controller.Com.backendQueue;
     
     public Core (Peer peer) {
-        
         this.peer = peer;
     }
     
     public void run() {
-        Adapter adapter = this.getAdapter();
+        //Adapter adapter = this.getAdapter();
         
-        if(adapter == null) {
+        /*if(adapter == null) {
             return;
-        }
+        }*/
         
         while(true) {
             try {
-                
-                
-                this.wait(MAX_SLEEP_TIME);
+                synchronized (this) {
+                    wait(MAX_SLEEP_TIME);
+                }
             } catch (InterruptedException e) {
                 
             } 
@@ -50,6 +50,14 @@ public class Core extends Thread implements core.factory.Core{
             return null;
         }
         
+    }
+    
+    public MessageQueue getBackendQueue() {
+        return this.backendQueue;
+    }
+    
+    public MessageQueue getFrontendQueue() {
+        return this.frontendQueue;
     }
 }
  

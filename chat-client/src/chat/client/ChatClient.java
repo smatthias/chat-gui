@@ -16,6 +16,7 @@ public class ChatClient {
         
         Gui gui = new Gui();
         gui.start();
-        
+        core.controller.Com.setPeer();
+        core.controller.Com.startThreads();
     }
 }

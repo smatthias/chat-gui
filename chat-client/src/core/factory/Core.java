@@ -6,6 +6,8 @@
 
 package core.factory;
 
+import core.model.MessageQueue;
+
 
 /**
  *
@@ -16,4 +18,8 @@ public interface Core {
     public static int MAX_SLEEP_TIME = 1000;
     
     public void run();
+    
+    public MessageQueue getBackendQueue();
+    
+    public MessageQueue getFrontendQueue();
 }
