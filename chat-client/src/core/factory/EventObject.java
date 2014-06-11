@@ -11,5 +11,5 @@ package core.factory;
  * @author msczepan
  */
 public interface EventObject {
-    
+
 }
