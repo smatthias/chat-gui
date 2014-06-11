@@ -1,5 +1,5 @@
 
-package chat.client.gui;
+package core.view.swing;
 
 import javax.swing.*;
 

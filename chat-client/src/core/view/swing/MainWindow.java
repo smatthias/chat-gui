@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package chat.client.gui;
+
+package core.view.swing;
 
 import javax.swing.*;
 
@@ -13,11 +9,10 @@ import java.awt.event.KeyEvent;
 
 /**
  *
- * @author msczepan
+ * @author akraskov
  */
-public class Gui extends JFrame{
-    
-    public Gui() {
+public class MainWindow  extends JFrame {
+    public MainWindow() {
         this.setSize(300, 400);
         
         this.setTitle("ZLChat");

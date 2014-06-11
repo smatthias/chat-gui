@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package chat.client.gui;
+package core.view.swing;
 
 import java.awt.Dimension;
 import java.awt.BorderLayout;
