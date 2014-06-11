@@ -8,6 +8,7 @@ package core.controller;
 
 import core.model.Peer;
 import core.network.adapter.Adapter;
+import core.model.MessageQueue;
 /**
  *
  * @author msczepan
@@ -15,6 +16,7 @@ import core.network.adapter.Adapter;
 public class Core extends Thread implements core.factory.Core{   
     
     private Peer peer = null;
+    private MessageQueue queue = null;
     
     public Core (Peer peer) {
         
@@ -24,7 +26,7 @@ public class Core extends Thread implements core.factory.Core{
     public void run() {
         Adapter adapter = this.getAdapter();
         
-        if(Adapter == null) {
+        if(adapter == null) {
             return;
         }
         
@@ -45,7 +47,6 @@ public class Core extends Thread implements core.factory.Core{
             int id = (int)(Math.random() * 1000);
             return new Adapter(id);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
         

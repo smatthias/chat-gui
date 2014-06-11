@@ -1,6 +1,7 @@
 
 package core.view;
 
+import core.model.eventObjects.MessageObject;
 import core.model.*;
 
 /**
@@ -15,5 +16,5 @@ public interface View {
     
     public void clearGroupChats();
     
-    public void addMessage(Message message);
+    public void addMessage(MessageObject message);
 }

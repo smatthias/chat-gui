@@ -12,4 +12,7 @@ package core.factory;
  */
 public interface Event {
     
+    public void process();
+    
+    public void send();
 }

@@ -6,10 +6,20 @@
 
 package core.model.events;
 
+import core.model.MessageQueue;
 /**
  *
  * @author msczepan
  */
 public class Contact implements core.factory.Event {
     
+    private MessageQueue queue;
+    
+    public void send() {
+        
+    }
+    
+    public void process() {
+        
+    }
 }

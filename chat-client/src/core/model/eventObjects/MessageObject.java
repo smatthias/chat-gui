@@ -4,19 +4,26 @@
  * and open the template in the editor.
  */
 
-package core.model;
+package core.model.eventObjects;
 
+import core.model.Peer;
 import java.util.Date;
 
 /**
  *
  * @author akraskov
  */
-public class Message {
+public class MessageObject implements core.factory.EventObject{
     
     private Peer peer;
     
     private String text;
     
     private Date date;
+    
+    public MessageObject(Peer peer, String text, Date date) {
+        this.peer = peer;
+        this.text = text;
+        this.date = date;
+    }
 }

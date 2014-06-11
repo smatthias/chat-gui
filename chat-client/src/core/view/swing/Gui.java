@@ -6,7 +6,7 @@
 package core.view.swing;
 
 import core.model.GroupChat;
-import core.model.Message;
+import core.model.eventObjects.MessageObject;
 import core.view.View;
 
 /**
@@ -30,7 +30,7 @@ public class Gui implements View {
     }
 
     @Override
-    public void addMessage(Message message) {
+    public void addMessage(MessageObject message) {
         
     }
 }
