@@ -25,7 +25,6 @@ public class MainForm {
     public JPanel createPanel()
     {
         JPanel panel = new JPanel(new BorderLayout());
-        
         panel.setBorder(new EmptyBorder(3, 3, 3, 3));
         
         JTextArea chat = new JTextArea();
@@ -38,9 +37,22 @@ public class MainForm {
         JTree tree = new JTree();
         tree.setBorder(LineBorder.createGrayLineBorder());
 
+        JTextField filter = new JTextField(); 
+        filter.setBorder(LineBorder.createGrayLineBorder());
+        
+        JList list = new JList();
+        list.setBorder(LineBorder.createGrayLineBorder());
+        list.setPreferredSize(new Dimension(50, 300));
+        
+        JPanel usersPanel = new JPanel(new BorderLayout());       
+        
+        usersPanel.add(filter, BorderLayout.NORTH);
+        usersPanel.add(tree, BorderLayout.CENTER);
+        
         panel.add(chat, BorderLayout.CENTER);
         panel.add(message, BorderLayout.SOUTH);
-        panel.add(tree, BorderLayout.EAST);
+        panel.add(usersPanel, BorderLayout.EAST);
+        panel.add(list, BorderLayout.WEST);
         
         return panel;
     }
