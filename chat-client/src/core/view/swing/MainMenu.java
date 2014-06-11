@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import core.view.swing.Settings;
+import core.view.swing.Search;
 
 /**
  *
@@ -73,7 +74,7 @@ public class MainMenu extends JMenuBar {
         
         findUserMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                // todo
+                new Search();
             }
         });
         

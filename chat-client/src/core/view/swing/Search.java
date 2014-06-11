@@ -31,7 +31,8 @@ public class Search extends JFrame{
         setup();
         addListener();
         this.show();
-        this.setSize(200, 50);
+        this.setSize(300, 75);
+        this.setLocation(400,250);
     }
     
     private void setup() {
@@ -42,13 +43,16 @@ public class Search extends JFrame{
         cancelButton = new JButton("cancel");
         searchButton = new JButton("suche");
         
-        this.setLayout(new GridLayout(1,2));
+        this.setLayout(new GridLayout(2,1));
         searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
         buttonPanel.setLayout(new BorderLayout());
         searchPanel.add(searchLabel);
         searchPanel.add(search);
         buttonPanel.add(cancelButton, BorderLayout.WEST);
         buttonPanel.add(searchButton, BorderLayout.EAST);
+        
+        this.add(searchPanel);
+        this.add(buttonPanel);
     }
     
     private void addListener() {
