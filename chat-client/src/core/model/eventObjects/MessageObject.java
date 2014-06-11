@@ -13,7 +13,7 @@ import java.util.Date;
  *
  * @author akraskov
  */
-public class MessageObject implements core.factory.EventObject{
+public class MessageObject implements core.interfaces.EventObject {
     
     private Peer peer;
     
@@ -26,4 +26,16 @@ public class MessageObject implements core.factory.EventObject{
         this.text = text;
         this.date = date;
     }
+
+    public Peer getPeer() {
+        return peer;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public Date getDate() {
+        return date;
+    }    
 }

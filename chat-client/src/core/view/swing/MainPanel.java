@@ -30,13 +30,15 @@ public class MainPanel extends JPanel{
     
     private JList list;
     
+    private JTextArea chat;
+    
     public MainPanel()
     {
         this.setLayout(new BorderLayout());
         this.setBorder(new EmptyBorder(3, 3, 3, 3));
         
-        JTextArea chat = new JTextArea();
-        chat.setBorder(LineBorder.createGrayLineBorder());
+        this.chat = new JTextArea();
+        this.chat.setBorder(LineBorder.createGrayLineBorder());
         
         this.message = new JTextArea();
         this.message.setPreferredSize(new Dimension(300, 50));
@@ -64,10 +66,29 @@ public class MainPanel extends JPanel{
         
         this.addListener();
     }
+
+    public JTextArea getMessage() {
+        return message;
+    }
+
+    public JTree getTree() {
+        return tree;
+    }
+
+    public JTextField getFilter() {
+        return filter;
+    }
+
+    public JList getList() {
+        return list;
+    }
+
+    public JTextArea getChat() {
+        return chat;
+    }
     
     private void addListener() {
         
-        String text = this.message.getText();
         this.message.addKeyListener(
             new KeyListener(){
 
@@ -76,9 +97,9 @@ public class MainPanel extends JPanel{
                     if (e.getKeyCode() == KeyEvent.VK_ENTER && e.getModifiers() == KeyEvent.CTRL_MASK) {
                         Peer peer = new Peer();
                         Date date = new Date();
-                        Message msg = new Message(peer, text, date);
+                        String text = message.getText();
                         
-                        message.setText("");
+                        Message msg = new Message(peer, text, date);
                     }       
                 }
                 

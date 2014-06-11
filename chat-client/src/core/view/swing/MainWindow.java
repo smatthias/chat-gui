@@ -11,7 +11,9 @@ import java.awt.event.KeyEvent;
  *
  * @author akraskov
  */
-public class MainWindow  extends JFrame {
+public class MainWindow extends JFrame {
+    
+    private MainPanel mainPanel;
     
     public MainWindow() {
         this.setSize(300, 400);
@@ -21,11 +23,17 @@ public class MainWindow  extends JFrame {
         
         this.setJMenuBar(new MainMenu());
         
-        this.add(new MainPanel());
+        this.mainPanel = new MainPanel();
+        
+        this.add(this.mainPanel);
         
         this.show();
         this.setWindowListener();
     }
+
+    public MainPanel getMainPanel() {
+        return mainPanel;
+    }    
     
     private void setWindowListener() {
         this.addWindowListener(new java.awt.event.WindowAdapter() {

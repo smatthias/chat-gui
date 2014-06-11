@@ -7,7 +7,7 @@ package core.view.swing;
 
 import core.model.GroupChat;
 import core.model.eventObjects.MessageObject;
-import core.view.View;
+import core.interfaces.*;
 
 /**
  *
@@ -15,14 +15,11 @@ import core.view.View;
  */
 public class Gui implements View {
 
-    @Override
-    public void setOutboundQueue() {
-        
-    }
+    private MainWindow mainWindow;
     
     @Override
     public void start() {
-        MainWindow window = new MainWindow();
+        this.mainWindow = new MainWindow();
     }
 
     @Override
@@ -37,6 +34,8 @@ public class Gui implements View {
 
     @Override
     public void addMessage(MessageObject message) {
-        
+        String text = this.mainWindow.getMainPanel().getChat().getText();
+        text = text + "\n" + message.getText();
+        this.mainWindow.getMainPanel().getChat().setText(text);
     }
 }

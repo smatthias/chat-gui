@@ -17,7 +17,7 @@ import net.tomp2p.storage.Data;
  *
  * @author msczepan
  */
-public class Adapter implements core.factory.Adapter{
+public class Adapter implements core.interfaces.Adapter{
     
     public final Peer peer;
     

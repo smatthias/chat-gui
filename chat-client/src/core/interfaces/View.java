@@ -1,5 +1,5 @@
 
-package core.view;
+package core.interfaces;
 
 import core.model.eventObjects.MessageObject;
 import core.model.*;
@@ -9,8 +9,6 @@ import core.model.*;
  * @author akraskov
  */
 public interface View {
-
-    public void setOutboundQueue();
     
     public void start();
     

@@ -4,7 +4,9 @@
 
 package chat.client;
 
+import core.controller.Bootstrap;
 import core.view.swing.Gui;
+import core.model.Peer;
 
 /**
  *
@@ -15,8 +17,11 @@ public class ChatClient {
     public static void main(String[] args) {
         
         Gui gui = new Gui();
-        gui.start();
-        core.controller.Com.setPeer();
-        core.controller.Com.startThreads();
+        Peer peer = new Peer();
+       
+        Bootstrap.setPeer(peer);
+        Bootstrap.setView(gui);
+        
+        Bootstrap.startThreads();
     }
 }
