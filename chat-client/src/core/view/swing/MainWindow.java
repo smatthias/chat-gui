@@ -18,9 +18,9 @@ public class MainWindow  extends JFrame {
         this.setTitle("ZLChat");
         this.setLocationRelativeTo(null);
         
-        this.setJMenuBar(this.getMainMenu());
+        this.setJMenuBar(new MainMenu());
         
-        this.add(this.getPanel());
+        this.add(new MainPanel());
         
         this.show();
         this.setWindowListener();
@@ -33,17 +33,5 @@ public class MainWindow  extends JFrame {
                 System.exit(0);
             }
         });
-    }
-    
-    private JMenuBar getMainMenu()
-    {
-        MainMenu menu = new MainMenu();
-        return menu.createMenu();
-    }
-    
-    private JPanel getPanel()
-    {
-        MainForm form = new MainForm();
-        return form.createPanel();
     }
 }

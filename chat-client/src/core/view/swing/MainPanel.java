@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package core.view.swing;
 
@@ -21,11 +16,11 @@ import java.awt.event.KeyEvent;
  *
  * @author akraskov
  */
-public class MainForm {
-    public JPanel createPanel()
+public class MainPanel extends JPanel{
+    public void MainPanel()
     {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(new EmptyBorder(3, 3, 3, 3));
+        this.setLayout(new BorderLayout());
+        this.setBorder(new EmptyBorder(3, 3, 3, 3));
         
         JTextArea chat = new JTextArea();
         chat.setBorder(LineBorder.createGrayLineBorder());
@@ -49,11 +44,9 @@ public class MainForm {
         usersPanel.add(filter, BorderLayout.NORTH);
         usersPanel.add(tree, BorderLayout.CENTER);
         
-        panel.add(chat, BorderLayout.CENTER);
-        panel.add(message, BorderLayout.SOUTH);
-        panel.add(usersPanel, BorderLayout.EAST);
-        panel.add(list, BorderLayout.WEST);
-        
-        return panel;
+        this.add(chat, BorderLayout.CENTER);
+        this.add(message, BorderLayout.SOUTH);
+        this.add(usersPanel, BorderLayout.EAST);
+        this.add(list, BorderLayout.WEST);
     }
 }

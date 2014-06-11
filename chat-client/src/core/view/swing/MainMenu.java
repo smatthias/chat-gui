@@ -11,16 +11,12 @@ import java.awt.event.KeyEvent;
  *
  * @author akraskov
  */
-public class MainMenu {
+public class MainMenu extends JMenuBar {
     
-    public JMenuBar createMenu()
-    {
-        JMenuBar menubar = new JMenuBar();
-        
-        menubar.add(this.createFileMenu());
-        menubar.add(this.createHelpMenu());
-        
-        return menubar;
+    public void MainMenu()
+    {        
+        this.add(this.createFileMenu());
+        this.add(this.createHelpMenu());
     }
     
     private JMenu createFileMenu()
