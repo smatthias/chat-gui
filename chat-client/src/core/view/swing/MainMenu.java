@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import core.view.swing.Settings;
 
 /**
  *
@@ -24,6 +25,7 @@ public class MainMenu extends JMenuBar {
         JMenu file = new JMenu("File");
         file.setMnemonic(KeyEvent.VK_F);
         
+        JMenuItem settingsMenuItem = new JMenuItem("Settings");
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.setMnemonic(KeyEvent.VK_E);
         exitMenuItem.setToolTipText("Exit application");
@@ -33,7 +35,12 @@ public class MainMenu extends JMenuBar {
                 System.exit(0);
             }
         });
-        
+        settingsMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                new Settings();
+            }
+        });
+        file.add(settingsMenuItem);
         file.add(exitMenuItem);
         
         return file;
