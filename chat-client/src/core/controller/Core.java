@@ -24,6 +24,10 @@ public class Core extends Thread implements core.factory.Core{
     public void run() {
         Adapter adapter = this.getAdapter();
         
+        if(Adapter == null) {
+            return;
+        }
+        
         while(true) {
             try {
                 
@@ -37,6 +41,14 @@ public class Core extends Thread implements core.factory.Core{
     }
     
     private Adapter getAdapter() {
-        return new Adapter();
+        try {
+            int id = (int)(Math.random() * 1000);
+            return new Adapter(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 }
+ 

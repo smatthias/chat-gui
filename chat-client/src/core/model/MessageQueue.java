@@ -12,5 +12,7 @@ package core.model;
  */
 public class MessageQueue extends java.util.ArrayList<core.factory.EventObject>{
     
-    public void send()
+    public void send() {
+        
+    }
 }
