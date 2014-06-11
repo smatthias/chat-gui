@@ -13,13 +13,13 @@ import java.awt.event.KeyEvent;
  */
 public class MainMenu extends JMenuBar {
     
-    public void MainMenu()
+    public MainMenu()
     {        
         this.add(this.createFileMenu());
         this.add(this.createHelpMenu());
     }
     
-    private JMenu createFileMenu()
+    public JMenu createFileMenu()
     {
         JMenu file = new JMenu("File");
         file.setMnemonic(KeyEvent.VK_F);

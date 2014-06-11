@@ -9,6 +9,8 @@ import core.model.*;
  * @author akraskov
  */
 public interface View {
+
+    public void setOutboundQueue();
     
     public void start();
     

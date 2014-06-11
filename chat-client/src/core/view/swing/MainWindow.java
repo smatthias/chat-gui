@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
  * @author akraskov
  */
 public class MainWindow  extends JFrame {
+    
     public MainWindow() {
         this.setSize(300, 400);
         

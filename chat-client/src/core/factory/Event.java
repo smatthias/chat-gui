@@ -6,11 +6,15 @@
 
 package core.factory;
 
+import core.model.MessageQueue;
+
 /**
  *
  * @author msczepan
  */
 public interface Event {
+
+    public MessageQueue queue = core.controller.Com.backendQueue;
     
     public void process();
     

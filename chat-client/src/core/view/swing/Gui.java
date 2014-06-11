@@ -14,6 +14,12 @@ import core.view.View;
  * @author msczepan
  */
 public class Gui implements View {
+
+    @Override
+    public void setOutboundQueue() {
+        
+    }
+    
     @Override
     public void start() {
         MainWindow window = new MainWindow();

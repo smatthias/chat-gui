@@ -16,8 +16,6 @@ import java.util.Date;
  */
 public class Message implements core.factory.Event{
     
-    private MessageQueue queue;
-    
     private MessageObject msg;
     
     public Message(Peer peer, String text, Date date) {

@@ -1,6 +1,8 @@
 
 package core.view.swing;
 
+import core.model.Peer;
+import core.model.events.Message;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
@@ -11,13 +13,24 @@ import javax.swing.border.LineBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Date;
 
 /**
  *
  * @author akraskov
  */
 public class MainPanel extends JPanel{
-    public void MainPanel()
+    
+    private JTextArea message;
+    
+    private JTree tree;
+    
+    private JTextField filter;
+    
+    private JList list;
+    
+    public MainPanel()
     {
         this.setLayout(new BorderLayout());
         this.setBorder(new EmptyBorder(3, 3, 3, 3));
@@ -25,19 +38,19 @@ public class MainPanel extends JPanel{
         JTextArea chat = new JTextArea();
         chat.setBorder(LineBorder.createGrayLineBorder());
         
-        JTextArea message = new JTextArea();
-        message.setPreferredSize(new Dimension(300, 50));
-        message.setBorder(LineBorder.createGrayLineBorder());
+        this.message = new JTextArea();
+        this.message.setPreferredSize(new Dimension(300, 50));
+        this.message.setBorder(LineBorder.createGrayLineBorder());
         
-        JTree tree = new JTree();
-        tree.setBorder(LineBorder.createGrayLineBorder());
+        this.tree = new JTree();
+        this.tree.setBorder(LineBorder.createGrayLineBorder());
 
-        JTextField filter = new JTextField(); 
-        filter.setBorder(LineBorder.createGrayLineBorder());
+        this.filter = new JTextField(); 
+        this.filter.setBorder(LineBorder.createGrayLineBorder());
         
-        JList list = new JList();
-        list.setBorder(LineBorder.createGrayLineBorder());
-        list.setPreferredSize(new Dimension(50, 300));
+        this.list = new JList();
+        this.list.setBorder(LineBorder.createGrayLineBorder());
+        this.list.setPreferredSize(new Dimension(50, 300));
         
         JPanel usersPanel = new JPanel(new BorderLayout());       
         
@@ -48,5 +61,34 @@ public class MainPanel extends JPanel{
         this.add(message, BorderLayout.SOUTH);
         this.add(usersPanel, BorderLayout.EAST);
         this.add(list, BorderLayout.WEST);
+        
+        this.addListener();
+    }
+    
+    private void addListener() {
+        
+        String text = this.message.getText();
+        this.message.addKeyListener(
+            new KeyListener(){
+
+                public void keyPressed(KeyEvent e){
+
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER && e.getModifiers() == KeyEvent.CTRL_MASK) {
+                        Peer peer = new Peer();
+                        Date date = new Date();
+                        Message msg = new Message(peer, text, date);
+                        
+                        message.setText("");
+                    }       
+                }
+                
+                public void keyReleased(KeyEvent e) {               
+                }
+                
+                public void keyTyped(KeyEvent e) {               
+                }
+            }
+        );
+
     }
 }
