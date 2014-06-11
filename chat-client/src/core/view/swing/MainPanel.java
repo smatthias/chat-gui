@@ -100,6 +100,8 @@ public class MainPanel extends JPanel{
                         String text = message.getText();
                         
                         Message msg = new Message(peer, text, date);
+                        
+                        message.setText("");
                     }       
                 }
                 
