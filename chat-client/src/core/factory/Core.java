@@ -4,12 +4,16 @@
  * and open the template in the editor.
  */
 
-package core;
+package core.factory;
+
 
 /**
  *
  * @author msczepan
  */
-public class Core {
+public interface Core {
+
+    public static int MAX_SLEEP_TIME = 1000;
     
+    public void run();
 }
