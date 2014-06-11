@@ -24,7 +24,7 @@ public class Core extends Thread implements core.factory.Core{
     }
     
     public void run() {
-        //Adapter adapter = this.getAdapter();
+        Adapter adapter = this.getAdapter();
         
         /*if(adapter == null) {
             return;
