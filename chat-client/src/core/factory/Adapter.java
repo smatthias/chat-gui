@@ -13,5 +13,5 @@ import net.tomp2p.p2p.Peer;
  */
 public interface Adapter {
     
-    public final int port = 80;
+    public final int port = 1000;
 }
