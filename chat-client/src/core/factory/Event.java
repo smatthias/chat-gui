@@ -6,12 +6,10 @@
 
 package core.factory;
 
-import net.tomp2p.p2p.Peer;
 /**
  *
  * @author msczepan
  */
-public interface Adapter {
+public interface Event {
     
-    public final int port = 4000;
 }

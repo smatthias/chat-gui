@@ -4,14 +4,18 @@
  * and open the template in the editor.
  */
 
-package core.factory;
+package core.model.events;
 
-import net.tomp2p.p2p.Peer;
+import core.model.MessageQueue;
 /**
  *
  * @author msczepan
  */
-public interface Adapter {
+public class Message implements core.factory.Event{
     
-    public final int port = 4000;
+    private MessageQueue queue;
+   
+    public void send () {
+        
+    }
 }

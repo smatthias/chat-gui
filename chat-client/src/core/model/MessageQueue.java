@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 
-package core.factory;
+package core.model;
 
-import net.tomp2p.p2p.Peer;
 /**
  *
  * @author msczepan
  */
-public interface Adapter {
+public class MessageQueue extends java.util.ArrayList<core.factory.EventObject>{
     
-    public final int port = 4000;
+    public void send()
 }
