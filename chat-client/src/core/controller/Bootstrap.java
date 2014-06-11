@@ -57,4 +57,22 @@ public class Bootstrap {
     public static Frontend getFrontendController() {
         return frontendController;
     } 
+    
+    public static void tearDown() {
+        backendController.stop();
+        backendController = null;
+    }
+    public static void restart() {
+        tearDown();
+        backendController = new Backend(peer);
+        backendController.start();
+    }
+    
+    public static void savePeer(String firstName, String lastName, String alias) {
+        peer = new Peer();
+        peer.setFirstName(firstName);
+        peer.setLastName(lastName);
+        peer.setAlias(alias);
+        setPeer(peer);
+    }
 }
