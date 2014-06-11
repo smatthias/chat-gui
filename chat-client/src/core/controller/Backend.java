@@ -23,6 +23,12 @@ public class Backend extends Thread implements Controller {
     public Backend (Peer peer) {
         this.peer = peer;
         this.adapter = this.createAdapter();
+        try {
+            System.out.println(adapter.get("test"));
+        } catch (Exception e) {
+            
+        }
+        
     }
     
     public void run() {
@@ -49,6 +55,7 @@ public class Backend extends Thread implements Controller {
             int id = (int)(Math.random() * 1000);
             return new Adapter(id);
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

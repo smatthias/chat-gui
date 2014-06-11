@@ -22,8 +22,12 @@ public class Adapter implements core.interfaces.Adapter{
     public final Peer peer;
     
     public Adapter(int peerId) throws Exception{
-            this.peer = new PeerMaker(Number160.createHash(peerId)).setPorts(port).makeAndListen();
-            FutureBootstrap fb = peer.bootstrap().setBroadcast().setPorts(port + 1).start();
+        this.peer = new PeerMaker(Number160.createHash(peerId)).setPorts(port).makeAndListen();
+        FutureBootstrap fb = peer.bootstrap().setBroadcast().setPorts(port + 1).start();
+        fb.awaitUninterruptibly();
+        if (fb.getBootstrapTo() != null) {
+            peer.discover().setPeerAddress(fb.getBootstrapTo().iterator().next()).start().awaitUninterruptibly();
+        }
     }
     
     private void store(String name, String ip) throws IOException {
