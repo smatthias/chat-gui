@@ -35,7 +35,11 @@ public class Gui implements View {
     @Override
     public void addMessage(MessageObject message) {
         String text = this.mainWindow.getMainPanel().getChat().getText();
-        text = text + "\n" + message.getText();
+        if (text.length() > 0) {
+            text = text + "\n";
+        }
+        text = text + "[" + message.getDate().toString() + "] ";
+        text = text + message.getText();
         this.mainWindow.getMainPanel().getChat().setText(text);
     }
 }
