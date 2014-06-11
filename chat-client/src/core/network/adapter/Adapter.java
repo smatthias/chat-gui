@@ -22,7 +22,7 @@ public class Adapter implements core.factory.Adapter{
     public final Peer peer;
     
     public Adapter(int peerId) throws Exception{
-            this.peer = new PeerMaker(Number160.createHash(peerId)).setPorts(port + peerId).makeAndListen();
+            this.peer = new PeerMaker(Number160.createHash(peerId)).setPorts(port).makeAndListen();
             FutureBootstrap fb = peer.bootstrap().setBroadcast().setPorts(port + 1).start();
     }
     
