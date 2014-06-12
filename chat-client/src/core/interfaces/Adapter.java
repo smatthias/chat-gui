@@ -7,5 +7,5 @@ package core.interfaces;
  */
 public interface Adapter {
     
-    public final int port = 15001;
+    public final int port = 4000;
 }

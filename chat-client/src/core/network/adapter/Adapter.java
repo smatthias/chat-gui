@@ -26,14 +26,12 @@ public class Adapter implements core.interfaces.Adapter{
     public final Peer peer;
     
     public Adapter(int peerId) throws Exception{
-        Bindings b = new Bindings();
-        b.addInterface("eth0");
-        this.peer = new PeerMaker(Number160.createHash(peerId)).setPorts(port).makeAndListen();
-        peer.getConfiguration().setBehindFirewall(true);
-        Peer another = new PeerMaker(new Number160(peerId)).setMasterPeer(peer).makeAndListen();
-        FutureDiscover future = another.discover().setPeerAddress(peer.getPeerAddress()).start();
-        future.awaitUninterruptibly();
-        
+        peer = new PeerMaker(Number160.createHash(peerId)).setPorts(port).makeAndListen();
+        FutureBootstrap fb = peer.bootstrap().setBroadcast().setPorts(port).start();
+        fb.awaitUninterruptibly();
+        if (fb.getBootstrapTo() != null) {
+            peer.discover().setPeerAddress(fb.getBootstrapTo().iterator().next()).start().awaitUninterruptibly();
+        }
     }
     
     /**

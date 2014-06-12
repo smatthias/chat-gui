@@ -25,6 +25,7 @@ public class Backend extends Thread implements Controller {
     public Backend (Peer peer) {
         this.peer = peer;
         this.adapter = this.createAdapter();
+        this.setStore();
         try {
         } catch (Exception e) {
             
