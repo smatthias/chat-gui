@@ -16,7 +16,7 @@ public class Peer {
     
     private String lastName;
     
-    private String alias;
+    private String alias = "default";
     
     private String ip;
     

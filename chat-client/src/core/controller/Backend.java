@@ -9,7 +9,7 @@ import core.model.MessageQueue;
 import core.model.eventObjects.*;
 import java.net.*;
 import java.io.*;
-
+import java.util.*;
 /**
  *
  * @author msczepan
@@ -80,10 +80,37 @@ public class Backend extends Thread implements Controller {
     
     public void setStore() {
         try {
-            this.adapter.store("akraskov", "10.161.128.193");
+            String ip = getIp();
+            this.adapter.store(peer.getAlias(), ip);
         } catch(IOException e) {
             
         }       
+    }
+    
+    private String getIp() {
+        try {
+        for (Enumeration<NetworkInterface> ifaces = 
+        NetworkInterface.getNetworkInterfaces();
+        ifaces.hasMoreElements(); )
+        {
+            NetworkInterface iface = ifaces.nextElement();
+            System.out.println(iface.getName() + ":");
+            for (Enumeration<InetAddress> addresses =
+                   iface.getInetAddresses();
+                 addresses.hasMoreElements(); )
+            {
+                InetAddress address = addresses.nextElement();
+                if (address instanceof Inet4Address) {
+                    if(!iface.getName().equals("lo")) {
+                        return address.getHostAddress();
+                    }
+                }
+            }
+        }
+        } catch (Exception e) {
+            
+        }
+        return null;
     }
 }
  
