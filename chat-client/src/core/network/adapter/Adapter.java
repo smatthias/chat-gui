@@ -48,19 +48,13 @@ public class Adapter implements core.interfaces.Adapter{
     
     public String get(String name) throws ClassNotFoundException, IOException {
         FutureDHT futureDHT = peer.get(Number160.createHash(name)).start();
-        futureDHT.addListener(new BaseFutureAdapter<FutureDHT>() {
-            @Override
-            public void operationComplete(FutureDHT future) throws Exception
-            {
-                if(future.isSuccess()) { // this flag indicates if the future was successful
-                    System.out.println("success");
-                } else {
-                    System.out.println("failure");
-                }
-            }
-        });
+        try {
+            futureDHT.await();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         futureDHT.getData();
-        futureDHT.awaitUninterruptibly();
+        
         if (futureDHT.isSuccess()) {
             return futureDHT.getData().getObject().toString();
         }

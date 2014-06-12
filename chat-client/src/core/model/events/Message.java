@@ -4,6 +4,7 @@ package core.model.events;
 import core.model.eventObjects.MessageObject;
 import core.model.Peer;
 import java.util.Date;
+
 /**
  *
  * @author msczepan

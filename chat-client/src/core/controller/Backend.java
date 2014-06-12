@@ -65,12 +65,21 @@ public class Backend extends Thread implements Controller {
             case "class core.model.eventObjects.MessageObject":
                 Bootstrap.getFrontendController().push(obj);
                 break;
+            case "class core.model.eventObjects.UserSearchObject":
+                UserSearchObject userSearch = (UserSearchObject) obj;
+                try {
+                    String result = this.adapter.get(userSearch.getAlias());
+                    System.out.println(result);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
     
     public void setStore() {
         try {
-            this.adapter.store("smat", "10.161.143.183");
+            this.adapter.store("akraskov", "10.161.128.193");
         } catch(IOException e) {
             
         }       

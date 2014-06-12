@@ -10,6 +10,9 @@ package core.view.swing;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import core.model.events.UserSearch;
+import core.model.eventObjects.UserSearchObject;
+
 /**
  *
  * @author msczepan
@@ -64,6 +67,8 @@ public class Search extends JFrame{
         
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                UserSearchObject obj = new UserSearchObject(search.getText());
+                UserSearch userSearch = new UserSearch(obj);
             }
         });
     }
