@@ -9,6 +9,7 @@ package core.network.adapter;
 import java.io.IOException;
 import net.tomp2p.futures.FutureDHT;
 import net.tomp2p.futures.FutureBootstrap; 
+import net.tomp2p.futures.BaseFutureAdapter;
 import net.tomp2p.p2p.Peer;
 import net.tomp2p.p2p.PeerMaker;
 import net.tomp2p.peers.Number160;
@@ -35,8 +36,25 @@ public class Adapter implements core.interfaces.Adapter{
         Number160 nr = new Number160(peerId);
         FutureDHT futureDHT = another.get(nr).start();
         futureDHT.getData();
+        futureDHT.addListener(new BaseFutureAdapter<FutureDHT>() {
+            @Override
+            public void operationComplete(FutureDHT future) throws Exception
+            {
+                if(future.isSuccess()) { // this flag indicates if the future was successful
+                    System.out.println("success");
+                } else {
+                    System.out.println("failure");
+                }
+            }
+       });
     }
     
+    /**
+     *
+     * @param name
+     * @param ip
+     * @throws IOException
+     */
     public void store(String name, String ip) throws IOException {
         peer.put(Number160.createHash(name)).setData(new Data(ip)).start().awaitUninterruptibly();
     }
