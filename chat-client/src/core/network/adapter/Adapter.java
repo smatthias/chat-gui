@@ -33,20 +33,7 @@ public class Adapter implements core.interfaces.Adapter{
         Peer another = new PeerMaker(new Number160(peerId)).setMasterPeer(peer).makeAndListen();
         FutureDiscover future = another.discover().setPeerAddress(peer.getPeerAddress()).start();
         future.awaitUninterruptibly();
-        Number160 nr = new Number160(peerId);
-        FutureDHT futureDHT = another.get(nr).start();
-        futureDHT.getData();
-        futureDHT.addListener(new BaseFutureAdapter<FutureDHT>() {
-            @Override
-            public void operationComplete(FutureDHT future) throws Exception
-            {
-                if(future.isSuccess()) { // this flag indicates if the future was successful
-                    System.out.println("success");
-                } else {
-                    System.out.println("failure");
-                }
-            }
-       });
+        
     }
     
     /**
@@ -61,6 +48,18 @@ public class Adapter implements core.interfaces.Adapter{
     
     public String get(String name) throws ClassNotFoundException, IOException {
         FutureDHT futureDHT = peer.get(Number160.createHash(name)).start();
+        futureDHT.addListener(new BaseFutureAdapter<FutureDHT>() {
+            @Override
+            public void operationComplete(FutureDHT future) throws Exception
+            {
+                if(future.isSuccess()) { // this flag indicates if the future was successful
+                    System.out.println("success");
+                } else {
+                    System.out.println("failure");
+                }
+            }
+        });
+        futureDHT.getData();
         futureDHT.awaitUninterruptibly();
         if (futureDHT.isSuccess()) {
             return futureDHT.getData().getObject().toString();
