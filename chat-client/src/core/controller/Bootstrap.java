@@ -6,6 +6,7 @@ import core.controller.Frontend;
 import core.model.MessageQueue;
 import core.model.Peer;
 import core.interfaces.View;
+import chat.storage.Settings;
 
 /**
  *
@@ -63,16 +64,23 @@ public class Bootstrap {
         backendController = null;
     }
     public static void restart() {
-        tearDown();
-        backendController = new Backend(peer);
-        backendController.start();
+//        tearDown();
+//        backendController = new Backend(peer);
+//        backendController.start();
     }
     
     public static void savePeer(String firstName, String lastName, String alias) {
-        peer = new Peer();
-        peer.setFirstName(firstName);
-        peer.setLastName(lastName);
-        peer.setAlias(alias);
-        setPeer(peer);
+        
+        Settings.save(firstName, lastName, alias);
+        System.out.println("ook");
+        
+//        peer = new Peer();
+//        peer.setFirstName(firstName);
+//        peer.setLastName(lastName);
+//        peer.setAlias(alias);
+//        
+//        
+//        
+//        setPeer(peer);
     }
 }

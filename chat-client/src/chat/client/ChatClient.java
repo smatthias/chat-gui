@@ -17,8 +17,14 @@ public class ChatClient {
     public static void main(String[] args) {
         
         Gui gui = new Gui();
-        Peer peer = new Peer();
+        
+        Peer peer = chat.storage.Settings.load();
+        if (peer == null) {
+            peer = new Peer();
+        }
        
+        System.out.println(peer.getAlias());
+        
         Bootstrap.setPeer(peer);
         Bootstrap.setView(gui);
         
