@@ -7,6 +7,8 @@ import core.model.Peer;
 import core.network.adapter.Adapter;
 import core.model.MessageQueue;
 import core.model.eventObjects.*;
+import java.net.*;
+import java.io.*;
 
 /**
  *
@@ -24,7 +26,6 @@ public class Backend extends Thread implements Controller {
         this.peer = peer;
         this.adapter = this.createAdapter();
         try {
-            System.out.println(adapter.get("test"));
         } catch (Exception e) {
             
         }
@@ -55,7 +56,6 @@ public class Backend extends Thread implements Controller {
             int id = (int)(Math.random() * 1000);
             return new Adapter(id);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -66,6 +66,14 @@ public class Backend extends Thread implements Controller {
                 Bootstrap.getFrontendController().push(obj);
                 break;
         }
+    }
+    
+    public void setStore() {
+        try {
+            this.adapter.store("smat", "10.161.143.183");
+        } catch(IOException e) {
+            
+        }       
     }
 }
  

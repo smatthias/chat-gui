@@ -29,17 +29,15 @@ public class Adapter implements core.interfaces.Adapter{
         b.addInterface("eth0");
         this.peer = new PeerMaker(Number160.createHash(peerId)).setPorts(port).makeAndListen();
         peer.getConfiguration().setBehindFirewall(true);
-        //FutureBootstrap fb = peer.bootstrap().setBroadcast().setPorts(port + 1).start();
-        /*fb.awaitUninterruptibly();
-        if (fb.getBootstrapTo() != null) {
-            peer.discover().setPeerAddress(fb.getBootstrapTo().iterator().next()).start().awaitUninterruptibly();
-        }*/
         Peer another = new PeerMaker(new Number160(peerId)).setMasterPeer(peer).makeAndListen();
         FutureDiscover future = another.discover().setPeerAddress(peer.getPeerAddress()).start();
         future.awaitUninterruptibly();
+        Number160 nr = new Number160(peerId);
+        FutureDHT futureDHT = another.get(nr).start();
+        futureDHT.getData();
     }
     
-    private void store(String name, String ip) throws IOException {
+    public void store(String name, String ip) throws IOException {
         peer.put(Number160.createHash(name)).setData(new Data(ip)).start().awaitUninterruptibly();
     }
     
