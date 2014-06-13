@@ -17,8 +17,9 @@ public class Serializer {
         
     }
     
-    public static void serialize(EventObject obj) {
-        
+    public static byte[] serialize(EventObject obj) {
+        byte [] serialized = new byte[1024];
+        return serialized;
     }
     
 }

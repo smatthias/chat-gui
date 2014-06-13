@@ -65,6 +65,7 @@ public class Backend extends Thread implements Controller {
         switch (obj.getClass().toString()) {
             case "class core.model.eventObjects.MessageObject":
                 Bootstrap.getFrontendController().push(obj);
+                core.network.adapter.OutboundChat.sendMessage(obj);
                 break;
             case "class core.model.eventObjects.UserSearchObject":
                 UserSearchObject userSearch = (UserSearchObject) obj;

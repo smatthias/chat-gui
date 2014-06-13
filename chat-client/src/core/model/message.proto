@@ -1,0 +1,10 @@
+package zlchat;
+
+option java_package = "core.model";
+option java_outer_classname = "MessageProtos";
+
+message Message {
+  required string alias = 1;
+  required string text = 2;
+  required string date = 3;
+}

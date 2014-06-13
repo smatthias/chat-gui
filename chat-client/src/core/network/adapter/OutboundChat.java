@@ -14,6 +14,7 @@ import core.interfaces.EventObject;
 public class OutboundChat {
     
     public static void sendMessage(EventObject obj) {
-        
+        byte [] serialized = core.model.Serializer.serialize(obj);
+        core.network.adapter.InboundChat.send(serialized, null, core.interfaces.Adapter.port + 1);
     }
 }

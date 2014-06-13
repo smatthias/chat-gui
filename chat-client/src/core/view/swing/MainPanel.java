@@ -9,13 +9,14 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.tree.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Date;
-
+import core.model.Contact;
 /**
  *
  * @author akraskov
@@ -44,9 +45,10 @@ public class MainPanel extends JPanel{
         this.message.setPreferredSize(new Dimension(300, 50));
         this.message.setBorder(LineBorder.createGrayLineBorder());
         
-        this.tree = new JTree();
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Kontakte");
+        this.tree = new JTree(root);
         this.tree.setBorder(LineBorder.createGrayLineBorder());
-
+            
         this.filter = new JTextField(); 
         this.filter.setBorder(LineBorder.createGrayLineBorder());
         
@@ -63,7 +65,7 @@ public class MainPanel extends JPanel{
         this.add(message, BorderLayout.SOUTH);
         this.add(usersPanel, BorderLayout.EAST);
         this.add(list, BorderLayout.WEST);
-        
+        this.addContact(new Contact());
         this.addListener();
     }
 
@@ -112,6 +114,13 @@ public class MainPanel extends JPanel{
                 }
             }
         );
-
+    }
+    
+    public void addContact(Contact contact) {
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode)tree.getModel().getRoot();
+        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(contact.getFirstName() + ' ' + contact.getLastName());
+        newNode.setUserObject(contact);
+        DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
+        model.insertNodeInto(new DefaultMutableTreeNode("another_child"), root, root.getChildCount());
     }
 }
